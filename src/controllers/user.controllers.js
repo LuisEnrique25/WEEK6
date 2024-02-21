@@ -43,7 +43,7 @@ const login = catchError(async(req, res) => {
     if(!user) return res.status(404).json({ error: 'User not Found'});
 
     const isValid = await bycript.compare(password, user.password);
-    if(!isValid) return res.sendStatus(401);
+    if(!isValid) return res.status(404).json({ error: 'Invalid Credentials'});
 
     const token = jwt.sign(
         {user},
