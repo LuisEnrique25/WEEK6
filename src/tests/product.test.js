@@ -48,7 +48,7 @@ test("Post -> 'URL_PRODUCTS', should return status code 201, res.body to be defi
 });
 
 //-------Test GET ALL---------------
-test("Get -> 'URL_CATEGORIES', should return status code 200, res.body to be defined and res.body have length to 1 ", async() => {
+test("Get -> 'URL_PRODUCTS', should return status code 200, res.body to be defined and res.body have length to 1 ", async() => {
     const res = await request(app)
         .get(URL_PRODUCTS)
 
