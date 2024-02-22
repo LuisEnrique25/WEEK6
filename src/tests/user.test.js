@@ -90,7 +90,7 @@ test("Post -> 'URL_USERS/login', should return status 200, res.body to be define
 });
 
 //-----------TEST FAIL LOGIN----------------
-test("Post -> 'URL_USERS/login', should return status 401", async() => {
+test("Post login fail -> 'URL_USERS/login', should return status 401", async() => {
     const failUserLogin = {
         email: 'enrique@gmail.com',
         password: 'failpassword'  //fail password
@@ -102,7 +102,7 @@ test("Post -> 'URL_USERS/login', should return status 401", async() => {
     expect(res.statusCode).toBe(401);
 })
 
-//-------Test DELETE--------------\
+//-------Test DELETE--------------
 test("Delete -> 'URL_USERS', should return statusCode 204", async() => {
     const res = await request(app)
         .delete(`${URL_USERS}/${userId}`)
