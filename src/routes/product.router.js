@@ -9,7 +9,7 @@ routerProduct.route('/')
     .post(verifyJwt , create);
 
 routerProduct.route('/:id')
-    .get(verifyJwt, getOne)
+    .get(getOne)
     .delete(verifyJwt, remove)
     .put(verifyJwt, update);
 
