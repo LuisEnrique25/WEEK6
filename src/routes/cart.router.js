@@ -8,6 +8,7 @@ routerCart.route('/')
     .post(create);
 
 routerCart.route('/:id')
+    .get(getOne)
     .delete(remove)
     .put(update);
 
