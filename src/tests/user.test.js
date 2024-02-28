@@ -33,7 +33,6 @@ beforeAll(async() => {
 })
 
 
-
 //-------Test GET ALL-----------
 test("Get -> URL_USERS, should return statusCode 200, res.body to be defined and res.body.length = 1", async() => {
     const res = await request(app)
@@ -44,7 +43,6 @@ test("Get -> URL_USERS, should return statusCode 200, res.body to be defined and
     expect(res.body).toBeDefined();
     expect(res.body).toHaveLength(1);
 });
-
 
 //-------Test POST-CREATE-----------
 test("Post 'URL_USERS', should return statusCode 201,and res.body to be defined and res.body.firstName = user.firstName", async() => {
@@ -57,7 +55,6 @@ test("Post 'URL_USERS', should return statusCode 201,and res.body to be defined 
     expect(res.body).toBeDefined();
     expect(res.body.firstName).toBe(user.firstName);
 });
-
 
 //-------Test PUT--------------
 test("Put -> 'URL_USERS/:id', should return statusCode 200, res.body to be defined and res.body.firstName = newNameUser.firstName", async() => {
