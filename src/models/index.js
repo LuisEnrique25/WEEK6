@@ -3,6 +3,7 @@ const Category = require("./Category");
 const Product = require("./Product");
 const Cart = require("./Cart");
 const Purchase = require("./Purchase");
+const ProductImg = require("./ProductImg");
 
 Product.belongsTo(Category); // se agrega el campo categoryId
 Category.hasMany(Product);
@@ -23,4 +24,8 @@ User.hasMany(Purchase);
 //Purchase + Product => productId en tabla purchase
 Purchase.belongsTo(Product);
 Product.hasMany(Purchase);
+
+//ProductImg + Product => productId en tabla productImg
+ProductImg.belongsTo(Product);
+Product.hasMany(ProductImg);
 

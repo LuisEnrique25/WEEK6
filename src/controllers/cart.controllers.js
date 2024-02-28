@@ -3,20 +3,24 @@ const Cart = require('../models/Cart');
 const Product = require('../models/Product');
 const User = require('../models/User')
 const Category = require('../models/Category');
+const ProductImg = require('../models/ProductImg');
 require("../models")
 
 const getAll = catchError(async(req, res) => {
     const userId = req.user.id;
     const results = await Cart.findAll({
         where: { userId },
-        include: {
+        include: [{
             model: Product,
             attributes: { exclude: ["updatedAt", "createdAt"] },
             include: {
                 model: Category,
                 attributes: ["name"]
+            }},
+            {
+                model: ProductImg
             }
-        } 
+        ] 
     });
     return res.json(results);
 });
@@ -27,14 +31,18 @@ const getOne = catchError(async(req, res) => {
     const userId = req.user.id;
     const results = await Cart.findByPk(id, {
         where: { userId },
-        include: {
+        include: [{
             model: Product,
             attributes: { exclude: ["updatedAt", "createdAt"] },
             include: {
                 model: Category,
                 attributes: ["name"]
             }
-        } 
+            },
+            {
+                model: ProductImg
+            }
+        ]
     });
     if(!results) return res.sendStatus(404);
     return res.json(results);
