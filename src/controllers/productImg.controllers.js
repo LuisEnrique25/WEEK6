@@ -1,5 +1,7 @@
 const catchError = require('../utils/catchError');
 const ProductImg = require('../models/ProductImg');
+const path = require("path");
+const fs =  require("fs");
 
 const getAll = catchError(async(req, res) => {
     const result = await ProductImg.findAll();
@@ -24,6 +26,12 @@ const remove = catchError(async(req, res) => {
     const result = await ProductImg.findByPk(id);
     if(!result) return res.sendStatus(404);
 
+    const imageFile = path.join(__dirname, "..", "public", "uploads", `${result.filename}`);
+
+    fs.unlinkSync(imageFile)
+
+    await result.destroy();
+    return res.sendStatus(204);
 
 });
 
