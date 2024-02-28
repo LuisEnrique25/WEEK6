@@ -14,8 +14,8 @@ const getAll = catchError(async(req, res) => {
 
     const results = await Product.findAll({
         include: [Category, ProductImg],
-
-        where
+        where: { categoryId: category }
+        //where
     });
     return res.json(results);
 });
