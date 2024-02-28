@@ -52,7 +52,6 @@ test("Post -> 'URL_PRODUCTS', should return status code 201, res.body to be defi
         .set('Authorization', `Bearer ${TOKEN}`)
 
     productId = res.body.id;
-    console.log(res.body);
 
     expect(res.statusCode).toBe(201);
     expect(res.body).toBeDefined();
@@ -96,8 +95,6 @@ test("Get -> 'URL_PRODUCTS/:id', should return status code 200, res.body.categor
     const res = await request(app)
         .get(`${URL_PRODUCTS}/${productId}`)
         .set('Authorization', `Bearer ${TOKEN}`)
-
-    console.log(res.body);
 
     expect(res.statusCode).toBe(200);
     expect(res.body).toBeDefined();
