@@ -11,7 +11,6 @@ const create = catchError(async(req, res) => {
     return res.status(201).json(result);
 });
 
-
 const remove = catchError(async(req, res) => {
     const { id } = req.params;
     const result = await Category.destroy({ where: {id} });

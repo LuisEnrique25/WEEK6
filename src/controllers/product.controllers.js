@@ -1,6 +1,7 @@
 const catchError = require('../utils/catchError');
 const Product = require('../models/Product');
 const Category = require('../models/Category');
+const ProductImg = require('../models/ProductImg');
 
 
 const getAll = catchError(async(req, res) => {
@@ -12,7 +13,7 @@ const getAll = catchError(async(req, res) => {
     if(category) where.categoryId = category;
 
     const results = await Product.findAll({
-        include: [Category],
+        include: [Category, ProductImg],
 
         where
     });
@@ -26,7 +27,7 @@ const create = catchError(async(req, res) => {
 
 const getOne = catchError(async(req, res) => {
     const { id } = req.params;
-    const result = await Product.findByPk(id, {include: [Category]});
+    const result = await Product.findByPk(id, {include: [Category, ProductImg]});
     if(!result) return res.sendStatus(404);
     return res.json(result);
 });
@@ -48,10 +49,22 @@ const update = catchError(async(req, res) => {
     return res.json(result[1][0]);
 });
 
+const setImage = catchError(async(req, res) => {
+    const {id} = req.params;
+    const product = await Product.findByPk(id);
+    if(!product) return res.sendStatus(404);
+
+    await product.setProductImgs(req.body);
+    const images = await product.getProductImgs()
+
+    return res.json(images)
+});
+
 module.exports = {
     getAll,
     create,
     getOne,
     remove,
-    update
+    update,
+    setImage
 }
