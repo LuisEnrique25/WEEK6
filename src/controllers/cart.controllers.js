@@ -13,14 +13,16 @@ const getAll = catchError(async(req, res) => {
         include: [{
             model: Product,
             attributes: { exclude: ["updatedAt", "createdAt"] },
-            include: {
+            include: [{
                 model: Category,
                 attributes: ["name"]
-            }},
+            },
             {
                 model: ProductImg
-            }
-        ] 
+            }]
+        }]
+            
+    
     });
     return res.json(results);
 });
@@ -34,14 +36,15 @@ const getOne = catchError(async(req, res) => {
         include: [{
             model: Product,
             attributes: { exclude: ["updatedAt", "createdAt"] },
-            include: {
+            include: [{
                 model: Category,
                 attributes: ["name"]
-            }
             },
             {
                 model: ProductImg
+            }]
             }
+            
         ]
     });
     if(!results) return res.sendStatus(404);
