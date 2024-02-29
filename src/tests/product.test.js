@@ -81,7 +81,7 @@ test("Get -> 'URL_PRODUCTS', should return status code 200, res.body to be defin
 test("GET -> 'URL_PRODUCTS', should return status code 200, res.body to be defined, and res.body.length ==== 1, res.body[0].categoryId === category.id , and res.body[0].category.id === category.id", async() => {
     const res = await request(app)
         .get(`${URL_PRODUCTS}?category=${category.id}`)
-
+    console.log((`${URL_PRODUCTS}?category=${category.id}`));
     expect(res.statusCode).toBe(200);
     expect(res.body).toBeDefined();
     expect(res.body).toHaveLength(1);
